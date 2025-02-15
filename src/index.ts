@@ -1,16 +1,13 @@
 import 'reflect-metadata';
-import { AppDataSource } from "./data-source"
-import { Product } from "./entities/Product";
-import { User } from "./entities/User"
+import { AppDataSource } from "./dbconnection/data-source"
+
+debugger
 AppDataSource.initialize().then(async () => {
-
-   
-    console.log("connection set succesfully");
     
-
+    console.log("connection set succesfully");
 }).catch(error => console.log(error))
 
 export{AppDataSource};
 export * from './entities/Product';
 export * from './entities/Category';
-export * from './data-source';
+export * from './dbconnection/data-source';

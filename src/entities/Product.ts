@@ -1,8 +1,9 @@
 import 'reflect-metadata';
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 import { Category } from './Category';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
-@Entity({ name: 'products' }) // Table name in MySQL
+
+@Entity('products')
 export class Product {
   @PrimaryGeneratedColumn()
   id: number;
@@ -10,7 +11,7 @@ export class Product {
   @Column({ type: 'varchar', length: 255 })
   productName: string;
 
-  @Column({ type: 'varchar', length: 255 })
+  @Column({ type: 'text', nullable: true })
   description: string;
 
   @Column({ type: 'decimal', precision: 10, scale: 2 })
@@ -19,12 +20,16 @@ export class Product {
   @Column({ type: 'int' })
   stockQuantity: number;
 
-  @ManyToOne(() => Category, (category) => category.products, { onDelete: 'CASCADE' })
-  category: Category;
+  @Column({ type: 'int'})
+  categoryId: number;
 
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @Column({type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
 
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
+  @Column({type:'timestamp',default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP'})
   updatedAt: Date;
+
+  @ManyToOne(() => Category, category => category.products)
+ 
+  category: Category;
 }
