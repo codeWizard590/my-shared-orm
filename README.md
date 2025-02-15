@@ -5,7 +5,7 @@ Steps to run this project:
 
 1. Run `npm i` command
 2. Setup database settings inside `.env` file present in the root location of the project
-3. run 'npm build'
+3. run 'npm run build'
 
 # This is a shared-typeorm library. In order to integrate this library with the node js project run the following commands
 1. Run 'npm link' .
